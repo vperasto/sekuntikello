@@ -224,18 +224,6 @@ const App: React.FC = () => {
       <nav className="p-4 bg-white border-t-4 border-black shrink-0 h-48 flex flex-col justify-center space-y-4">
         {view === View.STOPWATCH ? (
           <>
-            <div className="grid grid-cols-2 gap-3 h-12">
-              <EInkButton onClick={handleReset} variant="secondary" className="w-full text-xs h-full">Nollaa</EInkButton>
-              <EInkButton 
-                onClick={handleLap} 
-                disabled={time === 0} 
-                variant="secondary" 
-                className="w-full text-xs h-full font-bold"
-              >
-                Kirjaa aika
-              </EInkButton>
-            </div>
-
             <div className="h-20 w-full relative">
               <button 
                 onClick={handleStartStop} 
@@ -249,6 +237,18 @@ const App: React.FC = () => {
                   {isRunning ? 'LOPETA' : 'KÄYNNISTÄ'}
                 </span>
               </button>
+            </div>
+
+            <div className="grid grid-cols-2 gap-3 h-12">
+              <EInkButton onClick={handleReset} variant="secondary" className="w-full text-xs h-full">Nollaa</EInkButton>
+              <EInkButton 
+                onClick={handleLap} 
+                disabled={time === 0} 
+                variant="secondary" 
+                className="w-full text-xs h-full font-bold"
+              >
+                Kirjaa aika
+              </EInkButton>
             </div>
           </>
         ) : (
