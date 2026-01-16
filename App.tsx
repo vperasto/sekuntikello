@@ -137,19 +137,25 @@ const App: React.FC = () => {
   const deleteRun = (sessionId: string, runId: string) => {
     if (!window.confirm('Poistetaanko tämä mittaus?')) return;
 
-    setSessions(prev => {
-        return prev.map(session => {
-            if (session.id !== sessionId) return session;
-            return {
-                ...session,
-                runs: session.runs.filter(r => r.id !== runId)
-            };
-        }).filter(session => session.runs.length > 0);
-    });
+    // Lasketaan uusi tila ensin, jotta voimme tarkistaa poistuuko koko sessio
+    const updatedSessions = sessions.map(session => {
+        if (session.id !== sessionId) return session;
+        return {
+            ...session,
+            runs: session.runs.filter(r => r.id !== runId)
+        };
+    }).filter(session => session.runs.length > 0);
 
+    // Jos aktiivinen sessio on se jota muokataan, tarkistetaan jäikö se eloon
     if (isSessionActive && sessions.length > 0 && sessions[0].id === sessionId) {
-         // Logic check mainly handled by render
+         const activeSessionStillExists = updatedSessions.find(s => s.id === sessionId);
+         if (!activeSessionStillExists) {
+             // Jos aktiivinen sessio tyhjeni kokonaan, se poistuu listalta -> nollataan aktiivinen tila
+             setIsSessionActive(false);
+         }
     }
+
+    setSessions(updatedSessions);
   };
 
   const deleteSession = (sessionId: string) => {
