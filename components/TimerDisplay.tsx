@@ -32,9 +32,9 @@ const TimerDisplay: React.FC<TimerDisplayProps> = ({ time, subLabel }) => {
       </div>
       <div className="flex items-baseline font-mono text-6xl tracking-tighter leading-none select-none text-black">
         <span className="font-bold">{min}</span>
-        <span className="text-2xl mx-0.5 opacity-20 font-black">:</span>
+        <span className="text-2xl mx-1 opacity-40 font-black">.</span>
         <span className="font-bold">{sec}</span>
-        <span className="text-2xl mx-0.5 opacity-20 font-black">.</span>
+        <span className="text-2xl mx-1 opacity-40 font-black">.</span>
         <span className="text-4xl font-normal opacity-80">{cs}</span>
       </div>
     </div>

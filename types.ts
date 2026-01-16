@@ -6,10 +6,16 @@ export interface Lap {
   label: string;
 }
 
-export interface ResultBlock {
+export interface Run {
   id: string;
   timestamp: number;
-  timings: Lap[];
+  laps: Lap[];
+}
+
+export interface Session {
+  id: string;
+  timestamp: number;
+  runs: Run[];
 }
 
 export enum View {
